@@ -1,16 +1,17 @@
 use algorithm::shuffled_vec_i64;
 
+use algorithm::sort::{insertion_sort, merge_sort};
+
 fn main() {
-    let mut vals = shuffled_vec_i64(100);
+    let vals = shuffled_vec_i64(10000);
     println!("{:?}", vals);
-    for i in 2..vals.len() {
-        let key = vals[i-1];
-        let mut j = i - 1;
-        while j > 0  && vals[j-1] > key {
-            vals[j] = vals[j-1];
-            j -= 1; 
-        }
-        vals[j] = key;
+    for i in 0..10 {
+        let res = merge_sort(&vals);
     }
-    println!("{:?}", vals);
+    // println!("{:?}", res);
+
+    // println!("DEBUGGING:");
+    // let tmp: Vec<i64> = (0..100).collect();
+    // println!("{:?}", tmp[..10].to_vec());
+    // println!("{:?}", tmp[10..].to_vec());
 }
