@@ -14,13 +14,13 @@ pub fn merge_sort(input: &[i64]) -> Vec<i64> {
     let mut i: usize = 0;
     let mut j: usize = 0;
 
-    while i < res1.len() || j  < res2.len() {
-        if i == res1.len()  {
+    while i < res1.len() || j < res2.len() {
+        if i == res1.len() {
             ret.push(res2[j]);
             j += 1;
             continue;
         }
-        if j == res2.len()  {
+        if j == res2.len() {
             ret.push(res1[i]);
             i += 1;
             continue;
