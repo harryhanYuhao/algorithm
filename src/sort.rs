@@ -7,3 +7,6 @@ pub use merge_sort::merge_sort;
 
 mod heap_sort;
 pub use heap_sort::heap_sort;
+
+mod quick_sort;
+pub use quick_sort::quick_sort;

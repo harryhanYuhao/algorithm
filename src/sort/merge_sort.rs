@@ -42,7 +42,7 @@ mod test {
     use super::*;
     use crate::test::*;
     #[test]
-    fn test_heap_sort() {
+    fn test_merge_sort() {
         let length = 3145;
         let vals = shuffled_vec_i64(length);
         let sorted = ascending_vec_i64(length);
