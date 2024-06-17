@@ -52,3 +52,16 @@ pub fn heap_sort(input: &[i64]) -> Vec<i64> {
 
     ret
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::test::*;
+    #[test]
+    fn test_heap_sort() {
+        let length = 41232;
+        let vals = shuffled_vec_i64(length);
+        let sorted = ascending_vec_i64(length);
+        assert_eq!(heap_sort(&vals), sorted);
+    }
+}
