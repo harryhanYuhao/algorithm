@@ -65,7 +65,9 @@ pub fn test_random_vec(ptr: fn(&[i64]) -> Vec<i64>) {
 pub fn test_small_random_vec(ptr: fn(&[i64]) -> Vec<i64>) {
     let length = 324;
     let seed = 41;
-    assert!(is_ascending(&ptr(&seeded_small_random_vec_i64(length, seed))))
+    assert!(is_ascending(&ptr(&seeded_small_random_vec_i64(
+        length, seed
+    ))))
 }
 
 pub fn test_zero_vec(ptr: fn(&[i64]) -> Vec<i64>) {
@@ -74,4 +76,12 @@ pub fn test_zero_vec(ptr: fn(&[i64]) -> Vec<i64>) {
 
 pub fn test_one_vec(ptr: fn(&[i64]) -> Vec<i64>) {
     assert_eq!(ptr(&vec![10]), vec![10])
+}
+
+pub fn test_two_vec(ptr: fn(&[i64]) -> Vec<i64>) {
+    assert_eq!(ptr(&vec![10, 4]), vec![4, 10])
+}
+
+pub fn test_three_vec(ptr: fn(&[i64]) -> Vec<i64>) {
+    assert_eq!(ptr(&vec![10, 1, 4]), vec![1, 4, 10])
 }

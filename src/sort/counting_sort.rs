@@ -2,34 +2,33 @@
 // TODO: REMOVE THIS RESTRICTION
 pub fn counting_sort(input: &[i64]) -> Vec<i64> {
     let copy = input.to_vec();
-    let max = match copy.iter().max() {
+    let max = *match copy.iter().max() {
         Some(a) => a,
         None => return copy,
     };
-    let min = match copy.iter().min() {
+    let min = *match copy.iter().min() {
         Some(a) => a,
         None => return copy,
     };
 
     let mut b: Vec<i64> = vec![0; copy.len()];
-    let mut c: Vec<i64> = vec![0; *max as usize + 1];
+    let mut c: Vec<i64> = vec![0; (max - min) as usize + 1];
 
     for i in copy.iter() {
-        c[*i as usize] += 1;
-    } // c[j]: number of entries equal to j in A
+        c[(*i - min) as usize] += 1;
+    } // c[j]: number of entries equal to j + min in A
 
     for i in 1..c.len() {
         c[i] += c[i - 1];
-    } // c[j]: number of entries smaller than or equal to j in A
+    } // c[j]: number of entries smaller than or equal to j + min in A
 
     for i in 0..copy.len() {
-        b[c[copy[i] as usize] as usize - 1] = copy[i];
-        c[copy[i] as usize] -= 1;
+        b[c[(copy[i] - min) as usize] as usize - 1] = copy[i];
+        c[(copy[i] - min) as usize] -= 1;
     }
 
     b
 }
-
 
 #[cfg(test)]
 mod test {
@@ -54,5 +53,15 @@ mod test {
     fn one_vec() {
         test_one_vec(counting_sort);
     }
-}
 
+    #[test]
+    fn two_vec() {
+        test_two_vec(counting_sort);
+    }
+
+    #[test]
+    fn three_vec() {
+        test_three_vec(counting_sort);
+    }
+
+}

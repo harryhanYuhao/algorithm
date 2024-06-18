@@ -1,6 +1,9 @@
 pub fn quick_sort(input: &[i64]) -> Vec<i64> {
     let mut ret = input.to_vec();
     let length = ret.len();
+    if length <= 1 {
+        return ret;
+    }
     quick_sort_inplace(&mut ret, 0, length - 1);
     ret
 }
@@ -32,13 +35,35 @@ fn quick_sort_inplace(input: &mut [i64], start: usize, end: usize) {
 
 #[cfg(test)]
 mod test {
-    use crate::{sort::quick_sort, test::*};
+    use super::quick_sort;
+    use crate::test::*;
     #[test]
-    fn test_quick_sort() {
-        let length = 10000;
-        let vals = shuffled_vec_i64(length);
-        let target = ascending_vec_i64(length);
-        let sorted = quick_sort(&vals);
-        assert_eq!(sorted, target);
+    fn shuffled_vec() {
+        test_shuffled_vec(quick_sort);
+    }
+
+    #[test]
+    fn random_vec() {
+        test_small_random_vec(quick_sort);
+    }
+
+    #[test]
+    fn zero_vec() {
+        test_zero_vec(quick_sort);
+    }
+
+    #[test]
+    fn one_vec() {
+        test_one_vec(quick_sort);
+    }
+
+    #[test]
+    fn two_vec() {
+        test_two_vec(quick_sort);
+    }
+
+    #[test]
+    fn three_vec() {
+        test_three_vec(quick_sort);
     }
 }

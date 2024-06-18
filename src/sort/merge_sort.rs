@@ -36,49 +36,27 @@ pub fn merge_sort(input: &[i64]) -> Vec<i64> {
     ret
 }
 
-
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::merge_sort;
     use crate::test::*;
     #[test]
     fn shuffled_vec() {
-        let length = 10;
-        let seed = 34;
-        assert_eq!(
-            merge_sort(&seeded_shuffled_vec_i64(length, seed)),
-            ascending_vec_i64(length)
-        );
-
-        let length = 2;
-        assert_eq!(
-            merge_sort(&seeded_shuffled_vec_i64(length, seed)),
-            ascending_vec_i64(length)
-        );
-
-        let length = 3221;
-        assert_eq!(
-            merge_sort(&seeded_shuffled_vec_i64(length, seed)),
-            ascending_vec_i64(length)
-        );
+        test_shuffled_vec(merge_sort);
     }
 
     #[test]
-    fn random_vec() {
-        let length = 324;
-        let seed = 41;
-        assert!(is_ascending(&merge_sort(&seeded_random_vec_i64(
-            length, seed
-        ))))
+    fn small_random_vec() {
+        test_random_vec(merge_sort);
     }
 
     #[test]
     fn zero_vec() {
-        assert_eq!(merge_sort(&Vec::new()), Vec::new());
+        test_zero_vec(merge_sort);
     }
 
     #[test]
     fn one_vec() {
-        assert_eq!(merge_sort(&vec![10]), vec![10])
+        test_one_vec(merge_sort);
     }
 }

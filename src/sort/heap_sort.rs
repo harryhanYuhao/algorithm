@@ -1,4 +1,7 @@
 pub fn heap_sort(input: &[i64]) -> Vec<i64> {
+    if input.len() <= 1 {
+        return input.to_vec();
+    }
     fn get_left(index: usize) -> usize {
         (index + 1) * 2 - 1
     }
@@ -55,13 +58,35 @@ pub fn heap_sort(input: &[i64]) -> Vec<i64> {
 
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::heap_sort;
     use crate::test::*;
     #[test]
-    fn test_heap_sort() {
-        let length = 41232;
-        let vals = shuffled_vec_i64(length);
-        let sorted = ascending_vec_i64(length);
-        assert_eq!(heap_sort(&vals), sorted);
+    fn shuffled_vec() {
+        test_shuffled_vec(heap_sort);
+    }
+
+    #[test]
+    fn tworandom_vec() {
+        test_random_vec(heap_sort);
+    }
+
+    #[test]
+    fn zero_vec() {
+        test_zero_vec(heap_sort);
+    }
+
+    #[test]
+    fn one_vec() {
+        test_one_vec(heap_sort);
+    }
+
+    #[test]
+    fn two_vec() {
+        test_two_vec(heap_sort);
+    }
+
+    #[test]
+    fn three_vec() {
+        test_three_vec(heap_sort);
     }
 }

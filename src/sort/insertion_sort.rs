@@ -48,4 +48,14 @@ mod test {
     fn one_vec() {
         test_one_vec(insertion_sort);
     }
+
+    #[test]
+    fn two_vec() {
+        test_two_vec(insertion_sort);
+    }
+
+    #[test]
+    fn three_vec() {
+        test_three_vec(insertion_sort);
+    }
 }
