@@ -1,3 +1,4 @@
+/// sort ascending
 pub fn insertion_sort(input: &[i64]) -> Vec<i64> {
     let mut ret = input.to_vec();
     for i in 2..=ret.len() {
@@ -12,7 +13,6 @@ pub fn insertion_sort(input: &[i64]) -> Vec<i64> {
     ret
 }
 
-
 pub fn insertion_sort_inplace(input: &mut [i64]) {
     for i in 2..=input.len() {
         let key = input[i - 1];
@@ -25,16 +25,27 @@ pub fn insertion_sort_inplace(input: &mut [i64]) {
     }
 }
 
-
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::insertion_sort;
     use crate::test::*;
     #[test]
-    fn test_heap_sort() {
-        let length = 3145;
-        let vals = shuffled_vec_i64(length);
-        let sorted = ascending_vec_i64(length);
-        assert_eq!(insertion_sort(&vals), sorted);
+    fn shuffled_vec() {
+        test_shuffled_vec(insertion_sort);
+    }
+
+    #[test]
+    fn small_random_vec() {
+        test_random_vec(insertion_sort);
+    }
+
+    #[test]
+    fn zero_vec() {
+        test_zero_vec(insertion_sort);
+    }
+
+    #[test]
+    fn one_vec() {
+        test_one_vec(insertion_sort);
     }
 }
