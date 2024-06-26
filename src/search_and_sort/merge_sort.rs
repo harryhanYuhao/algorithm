@@ -1,4 +1,4 @@
-use crate::sort::insertion_sort;
+use super::insertion_sort;
 
 pub fn merge_sort(input: &[i64]) -> Vec<i64> {
     // end of recursion

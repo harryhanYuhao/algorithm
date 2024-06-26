@@ -1,4 +1,4 @@
-use algorithm::sort::{counting_sort, heap_sort, insertion_sort, merge_sort, quick_sort};
+use algorithm::search_and_sort::{counting_sort, heap_sort, insertion_sort, merge_sort, quick_sort};
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use rand::prelude::*;
 

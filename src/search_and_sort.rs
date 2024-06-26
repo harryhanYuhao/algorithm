@@ -13,3 +13,5 @@ pub use quick_sort::quick_sort;
 
 mod counting_sort;
 pub use counting_sort::counting_sort;
+
+mod binary_search;

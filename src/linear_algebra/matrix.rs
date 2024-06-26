@@ -1,16 +1,15 @@
-use std::usize;
-
-#[derive(Clone)]
+//! Marrix2D: implement 2D matrix in rust.
+#[derive(Clone, PartialEq)]
 pub struct Matrix2D {
     size: (u32, u32), // m * n matrix
     val: Vec<f64>,    // the a,b th entry is accessed by a*m + b
 }
 
 impl Matrix2D {
-    pub fn new(m: u32, n: u32) -> Matrix2D {
+    pub fn new(rows: u32, cols: u32) -> Matrix2D {
         Matrix2D {
-            size: (m, n),
-            val: vec![0.0; (m * n) as usize],
+            size: (rows, cols),
+            val: vec![0.0; (rows * cols) as usize],
         }
     }
 
@@ -145,5 +144,38 @@ impl std::fmt::Debug for Matrix2D {
             write!(f, "\n")?;
         }
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test] 
+    fn init_matrix(){
+        let rows = 1000;
+        let cols = 2000;
+        let test_a = Matrix2D::new(rows, cols);
+        for i in 0..rows {
+            for j in 0..cols {
+                assert_eq!(test_a[(i, j)], 0.0);
+            }
+        }
+    }
+
+    #[test]
+    fn set_get_matrix(){
+        let rows = 1000;
+        let cols = 2000;
+        let mut test_a = Matrix2D::new(rows, cols);
+        for i in 0..rows {
+            for j in 0..cols {
+                test_a[(i, j)] = i as f64 + j as f64;
+            }
+        }
+        for i in 0..rows {
+            for j in 0..cols {
+                assert_eq!(test_a[(i, j)], i as f64 + j as f64);
+            }
+        }
     }
 }
